@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+
+# Environment Variables
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Local Vector Database (Temporary files)
+# Note: We are committing the chroma_db for this project as requested for the GH Action, 
+# but we should exclude temporary lock files.
+Phase_1_Data_Ingestion/chroma_db/*.lock
+Phase_1_Data_Ingestion/chroma_db/chroma.sqlite3-journal
+
+# OS files
+.DS_Store
+Thumbs.db

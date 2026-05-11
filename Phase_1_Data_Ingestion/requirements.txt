@@ -1,0 +1,9 @@
+requests
+beautifulsoup4
+langchain
+langchain-community
+langchain-text-splitters
+chromadb
+sentence-transformers
+pydantic
+apscheduler

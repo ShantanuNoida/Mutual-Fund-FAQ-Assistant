@@ -1,0 +1,55 @@
+# OFFICIAL HDFC MUTUAL FUND DATA (Verified Sources)
+
+## HDFC Mid Cap Opportunities Fund
+- Investment Objective: Predominantly invests in mid-cap companies (min 65%) with strong financial strength and growth prospects.
+- Exit Load: 1.00% if redeemed within 1 year; Nil thereafter.
+- Min SIP: ₹100
+- TER (Direct Growth): 0.77%
+- Risk: Very High
+- Source: https://www.hdfcfund.com/explore/mutual-funds/hdfc-mid-cap-opportunities-fund/direct
+
+## HDFC Flexi Cap Fund
+- Investment Objective: Dynamic equity scheme investing across large, mid, and small-cap stocks for long-term appreciation.
+- Exit Load: 1.00% if redeemed within 1 year; Nil thereafter.
+- Min SIP: ₹100
+- TER (Direct Growth): 0.98%
+- Risk: Very High
+- Source: https://www.hdfcfund.com/explore/mutual-funds/hdfc-flexi-cap-fund/direct
+
+## HDFC Focused 30 Fund
+- Investment Objective: High-conviction portfolio of maximum 30 stocks across large, mid, and small-cap categories.
+- Exit Load: 1.00% if redeemed within 1 year; Nil thereafter.
+- Min SIP: ₹100
+- TER (Direct Growth): 0.75%
+- Risk: Very High
+- Source: https://www.hdfcfund.com/explore/mutual-funds/hdfc-focused-30-fund/direct
+
+## HDFC ELSS Tax Saver Fund
+- Investment Objective: Offers tax benefits under Section 80C and wealth creation with a mandatory 3-year lock-in.
+- Exit Load: Nil (due to statutory 3-year lock-in).
+- Min SIP: ₹500
+- TER (Direct Growth): 1.16%
+- Risk: Very High
+- Source: https://www.hdfcfund.com/explore/mutual-funds/hdfc-elss-tax-saver-fund/direct
+
+## HDFC Top 100 Fund
+- Investment Objective: Predominantly invests in the top 100 largest companies in India (Large Cap) for long-term capital growth.
+- Exit Load: 1.00% if redeemed within 1 year; Nil thereafter.
+- Min SIP: ₹100
+- TER (Direct Growth): 1.04%
+- Risk: Very High
+- Benchmark: NIFTY 100
+- Source: https://www.hdfcfund.com/explore/mutual-funds/hdfc-top-100-fund/direct
+
+## AMFI Knowledge Center: SIP
+- Definition: A method of investing a fixed sum in a mutual fund scheme at regular intervals (monthly/quarterly).
+- Key Benefits: Rupee Cost Averaging, Power of Compounding, Disciplined Investing.
+- Minimum Investment: Many schemes allow starting an SIP with as little as ₹500 per month.
+- Source: https://www.amfiindia.com/investor/knowledge-center-info?zoneName=sip
+
+## AMFI Knowledge Center: Taxation (FY 2024-25)
+- Equity-Oriented Funds STCG: 20% if units held for 12 months or less.
+- Equity-Oriented Funds LTCG: 12.5% on gains exceeding ₹1.25 lakh if units held for more than 12 months.
+- Non-Equity Oriented Funds (Debt/Gold): Taxed at investor's applicable income tax slab rates.
+- Dividend Tax: Added to investor's income and taxed at slab rates. TDS at 10% if dividend exceeds ₹5,000.
+- Source: https://www.amfiindia.com/investor/knowledge-center-info?zoneName=TaxationMutualFunds

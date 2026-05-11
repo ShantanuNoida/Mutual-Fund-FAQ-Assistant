@@ -1,3 +1,10 @@
+try:
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -10,6 +17,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(BASE_DIR, "Phase_3_Guardrails", "src"))
 sys.path.append(os.path.join(BASE_DIR, "Phase_2_RAG_Pipeline", "src"))
+sys.path.append(BASE_DIR) # Add root to path for cross-phase imports
+
 
 try:
     from safe_rag_pipeline import SafeRAGEngine

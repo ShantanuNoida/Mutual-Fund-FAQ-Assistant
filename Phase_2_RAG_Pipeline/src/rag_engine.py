@@ -58,22 +58,32 @@ def format_docs(docs):
 class RAGEngine:
     def __init__(self):
         # Determine the effective DB directory (Vercel fix)
-        effective_db_dir = CHROMA_DB_DIR
+        # Ensure path is absolute and normalized
+        abs_source_db = os.path.abspath(CHROMA_DB_DIR)
+        effective_db_dir = abs_source_db
         
         # In Vercel/Lambda, the filesystem is read-only except for /tmp
-        if os.environ.get("VERCEL") or not os.access(os.path.dirname(CHROMA_DB_DIR), os.W_OK):
+        if os.environ.get("VERCEL"):
             import shutil
             tmp_db_dir = "/tmp/chroma_db"
-            if not os.path.exists(tmp_db_dir):
-                print(f"Copying ChromaDB to {tmp_db_dir} for write access...")
-                shutil.copytree(CHROMA_DB_DIR, tmp_db_dir, dirs_exist_ok=True)
-            effective_db_dir = tmp_db_dir
+            try:
+                if os.path.exists(tmp_db_dir):
+                    shutil.rmtree(tmp_db_dir)
+                print(f"Deployment: Copying ChromaDB from {abs_source_db} to {tmp_db_dir}...")
+                shutil.copytree(abs_source_db, tmp_db_dir)
+                effective_db_dir = tmp_db_dir
+                print("Deployment: Database relocation successful.")
+            except Exception as e:
+                print(f"Deployment Warning: Failed to relocate database to /tmp: {e}")
+                # Fallback to source and hope for the best (or specific error logging)
 
+        print(f"Initializing Chroma with directory: {effective_db_dir}")
         self.embeddings = HuggingFaceEndpointEmbeddings(
             huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
             model="sentence-transformers/all-MiniLM-L6-v2"
         )
         self.vectorstore = Chroma(persist_directory=effective_db_dir, embedding_function=self.embeddings)
+
 
 
 

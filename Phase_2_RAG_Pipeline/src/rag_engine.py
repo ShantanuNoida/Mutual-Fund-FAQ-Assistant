@@ -2,8 +2,9 @@ import os
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceEmbeddings
 from langchain_community.vectorstores import Chroma
+
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.output_parsers import StrOutputParser
 
@@ -55,8 +56,12 @@ def format_docs(docs):
 
 class RAGEngine:
     def __init__(self):
-        self.embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
+        self.embeddings = HuggingFaceInferenceEmbeddings(
+            api_key=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
+            model_name="sentence-transformers/all-MiniLM-L6-v2"
+        )
         self.vectorstore = Chroma(persist_directory=CHROMA_DB_DIR, embedding_function=self.embeddings)
+
         self.retriever = self.vectorstore.as_retriever(search_kwargs={"k": 3})
         self.llm = ChatGroq(temperature=0, model_name=LLM_MODEL)
         

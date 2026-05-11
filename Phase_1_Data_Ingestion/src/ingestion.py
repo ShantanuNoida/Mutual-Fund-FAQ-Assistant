@@ -4,8 +4,9 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceInferenceEmbeddings
 from langchain_community.vectorstores import Chroma
+
 
 # Configuration
 CHROMA_DB_DIR = os.path.join(os.path.dirname(__file__), '..', 'chroma_db')
@@ -120,9 +121,13 @@ def chunk_documents(docs):
     return chunks
 
 def store_in_chroma(chunks):
-    """Embeds the chunks and stores them in a local Chroma vector database."""
-    print(f"Initializing embedding model '{EMBEDDING_MODEL}'...")
-    embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL)
+    """Uses HF Inference API to embed the chunks and stores them in Chroma."""
+    print(f"Initializing HF Inference API for model 'sentence-transformers/all-MiniLM-L6-v2'...")
+    embeddings = HuggingFaceInferenceEmbeddings(
+        api_key=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
+        model_name="sentence-transformers/all-MiniLM-L6-v2"
+    )
+
     
     # Clear existing DB to ensure fresh start
     import shutil

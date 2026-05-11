@@ -57,11 +57,24 @@ def format_docs(docs):
 
 class RAGEngine:
     def __init__(self):
+        # Determine the effective DB directory (Vercel fix)
+        effective_db_dir = CHROMA_DB_DIR
+        
+        # In Vercel/Lambda, the filesystem is read-only except for /tmp
+        if os.environ.get("VERCEL") or not os.access(os.path.dirname(CHROMA_DB_DIR), os.W_OK):
+            import shutil
+            tmp_db_dir = "/tmp/chroma_db"
+            if not os.path.exists(tmp_db_dir):
+                print(f"Copying ChromaDB to {tmp_db_dir} for write access...")
+                shutil.copytree(CHROMA_DB_DIR, tmp_db_dir, dirs_exist_ok=True)
+            effective_db_dir = tmp_db_dir
+
         self.embeddings = HuggingFaceEndpointEmbeddings(
             huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
             model="sentence-transformers/all-MiniLM-L6-v2"
         )
-        self.vectorstore = Chroma(persist_directory=CHROMA_DB_DIR, embedding_function=self.embeddings)
+        self.vectorstore = Chroma(persist_directory=effective_db_dir, embedding_function=self.embeddings)
+
 
 
         self.retriever = self.vectorstore.as_retriever(search_kwargs={"k": 3})
